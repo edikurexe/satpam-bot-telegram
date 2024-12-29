@@ -113,7 +113,7 @@ services:
     build: .
     container_name: telegram_bot
     env_file:
-      - .env
+      - token.env
     restart: unless-stopped
 ```
 
