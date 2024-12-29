@@ -34,7 +34,7 @@ Bot ini dirancang untuk memantau anggota grup Telegram yang tidak memiliki usern
 ### **1. Clone Repository**
 Clone atau salin script ini ke direktori lokal:
 ```bash
-git clone https://github.com/edikurexe/satpam-bot.git
+git clone https://github.com/edikurexe/satpam-bot-telegram.git \satpam-bot
 cd satpam-bot
 ```
 
@@ -142,8 +142,6 @@ docker-compose down
 |-------------------|----------------------------------------------------|
 | `/start`          | Menampilkan informasi tentang bot.                 |
 | `/help`           | Menampilkan daftar perintah bot.                   |
-| `/mute_all`       | Membisukan semua anggota grup.                     |
-| `/unmute_all`     | Membuka mute semua anggota grup.                   |
 | `/check_members`  | Memberikan informasi tentang fitur monitoring bot. |
 
 ---
