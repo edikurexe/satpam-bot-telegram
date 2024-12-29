@@ -1,7 +1,7 @@
 
 # **Bot Telegram Anti Mute dan Peringatan Username**
 
-Bot ini dirancang untuk memantau anggota grup Telegram yang tidak memiliki username, memberikan peringatan hingga tiga kali, dan mengeluarkan mereka jika tidak memenuhi aturan. Selain itu, bot memiliki fitur untuk membisukan dan membuka mute semua anggota grup.
+Bot ini dirancang untuk memantau anggota grup Telegram yang tidak memiliki username, memberikan peringatan hingga tiga kali, dan mengeluarkan mereka jika tidak memenuhi aturan.
 
 ---
 
@@ -9,9 +9,6 @@ Bot ini dirancang untuk memantau anggota grup Telegram yang tidak memiliki usern
 - **Peringatan Username:**
   - Bot memantau anggota tanpa username.
   - Memberikan hingga tiga peringatan sebelum mengeluarkan anggota dari grup.
-- **Mute/Unmute Semua Anggota:**
-  - Admin grup dapat membisukan semua anggota grup.
-  - Admin grup juga dapat membuka mute untuk semua anggota grup.
 - **Informasi dan Bantuan:**
   - Perintah `/start` dan `/help` memberikan informasi dan daftar perintah bot.
 
