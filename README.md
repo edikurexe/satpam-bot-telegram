@@ -1,153 +1,49 @@
+# satpam-bot-telegram
 
-# **Bot Telegram Anti Mute dan Peringatan Username**
+Telegram moderation bot focused on enforcing username rules in group chats.
 
-Bot ini dirancang untuk memantau anggota grup Telegram yang tidak memiliki username, memberikan peringatan hingga tiga kali, dan mengeluarkan mereka jika tidak memenuhi aturan.
+## What this bot does
+- Monitors members who do not have a Telegram username
+- Sends warnings to non-compliant members
+- Escalates warnings up to a defined limit
+- Removes members who still do not follow the group rule
+- Provides basic `/start` and `/help` commands
 
----
+## Main use case
+This bot is useful for Telegram groups that require members to have a public username for moderation, identification, or admin workflow reasons.
 
-## **Fitur**
-- **Peringatan Username:**
-  - Bot memantau anggota tanpa username.
-  - Memberikan hingga tiga peringatan sebelum mengeluarkan anggota dari grup.
-- **Informasi dan Bantuan:**
-  - Perintah `/start` dan `/help` memberikan informasi dan daftar perintah bot.
+## Tech stack
+- Python 3
+- python-telegram-bot
+- python-dotenv
+- Docker / Docker Compose
 
----
-
-## **Persyaratan**
-### **Instalasi Lokal**
-- Python 3.9 atau lebih baru.
-- Modul Python berikut:
-  - `python-telegram-bot`
-  - `python-dotenv`
-
-### **Instalasi Docker**
-- Docker dan Docker Compose telah diinstal.
-
----
-
-## **Instalasi**
-
-### **1. Clone Repository**
-Clone atau salin script ini ke direktori lokal:
+## Local setup
 ```bash
-git clone https://github.com/edikurexe/satpam-bot-telegram.git \satpam-bot
-cd satpam-bot
-```
-
----
-
-### **2. Instalasi Lokal**
-
-#### **a. Instalasi Dependencies**
-Instal semua dependencies yang diperlukan:
-```bash
+git clone https://github.com/edikurexe/satpam-bot-telegram.git
+cd satpam-bot-telegram
 pip install -r requirements.txt
-```
-
-Jika file `requirements.txt` belum dibuat, tambahkan dependencies berikut ke file tersebut:
-```
-python-telegram-bot==20.3
-python-dotenv
-```
-
-#### **b. Konfigurasi Token**
-1. Buat file `token.env` di direktori utama proyek:
-   ```bash
-   touch token.env
-   ```
-2. Tambahkan token bot Anda ke file `token.env`:
-   ```
-   TOKEN=YOUR_BOT_TOKEN
-   ```
-   Ganti `YOUR_BOT_TOKEN` dengan token yang didapatkan dari BotFather.
-
-#### **c. Menjalankan Bot**
-Jalankan bot dengan perintah berikut:
-```bash
+cp token.env.example token.env 2>/dev/null || printf 'TOKEN=your_bot_token_here
+' > token.env
 python bot.py
 ```
 
-#### **d. Hentikan Bot**
-Gunakan kombinasi `CTRL + C` untuk menghentikan bot.
-
----
-
-### **3. Instalasi Menggunakan Docker**
-
-#### **a. Persiapan File**
-Pastikan file `Dockerfile` dan `docker-compose.yml` ada di direktori proyek. Berikut adalah contohnya:
-
-**Dockerfile**
-```Dockerfile
-# Gunakan Python sebagai base image
-FROM python:3.9-slim
-
-# Set direktori kerja di dalam container
-WORKDIR /
-
-# Salin file requirements.txt ke dalam container
-COPY requirements.txt .
-
-# Instal semua dependensi Python
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Salin file script bot
-COPY bot.py .
-
-# Salin file environment token.env
-COPY token.env .
-
-# Jalankan bot
-CMD ["sh", "-c", "TOKEN=$(grep TOKEN token.env | cut -d '=' -f 2) python3 bot.py"]
-```
-
-**docker-compose.yml**
-```yaml
-version: "3.8"
-services:
-  bot:
-    build: .
-    container_name: telegram_bot
-    env_file:
-      - token.env
-    restart: unless-stopped
-```
-
-#### **b. Konfigurasi Token**
-Tambahkan token bot ke file `token.env` seperti berikut:
-```
-TOKEN=YOUR_BOT_TOKEN
-```
-
-#### **c. Build dan Jalankan Bot**
-Jalankan perintah berikut:
+## Docker setup
 ```bash
 docker-compose up --build -d
 ```
 
-#### **d. Hentikan Bot**
-Gunakan perintah berikut untuk menghentikan bot:
-```bash
-docker-compose down
+## Configuration
+Create a `token.env` file in the project root:
+```env
+TOKEN=your_bot_token_here
 ```
 
----
+## Repository structure
+- `bot.py` — main bot logic
+- `requirements.txt` — Python dependencies
+- `Dockerfile` — container build definition
+- `token.env` — local environment file template/value placeholder
 
-## **Daftar Perintah**
-| Perintah         | Deskripsi                                           |
-|-------------------|----------------------------------------------------|
-| `/start`          | Menampilkan informasi tentang bot.                 |
-| `/help`           | Menampilkan daftar perintah bot.                   |
-| `/check_members`  | Memberikan informasi tentang fitur monitoring bot. |
-
----
-
-## **Catatan**
-- **Lokal:** Pastikan Python diinstal dan lingkungan virtual (optional) digunakan untuk menghindari konflik dependencies.
-- **Docker:** Pastikan Docker berjalan di mesin Anda, dan gunakan `docker-compose` untuk pengelolaan yang lebih mudah.
-- Pastikan bot memiliki izin admin di grup agar dapat memantau anggota atau mengatur izin mereka.
-
----
-
-Jika ada pertanyaan atau masalah, jangan ragu untuk menghubungi pengembang bot melalui [Telegram](https://t.me/edikurbot).
+## Notes
+This repository represents a practical moderation utility built for real Telegram group operations.
